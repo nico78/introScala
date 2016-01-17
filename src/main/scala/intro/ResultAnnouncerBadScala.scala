@@ -3,7 +3,7 @@ package intro
 
 object ResultAnnouncerBadScala {
 
-   class Result(var winner: String, var score: Int) {
+   class Result(private val winner: String, private val score: Int) {
 
     def getWinner(): String = {
       return winner;
@@ -12,8 +12,6 @@ object ResultAnnouncerBadScala {
     def getScore(): Int = {
       return score;
     }
-
-    def canEqual(other: Any): Boolean = other.isInstanceOf[Result]
 
     override def equals(o: Any): Boolean = {
       if (this == o) return true;
@@ -25,7 +23,7 @@ object ResultAnnouncerBadScala {
       return (winner == result.winner);
 
     }
-    
+
     override def hashCode(): Int = {
       var result: Int = winner.hashCode();
       result = 31 * result + score;
@@ -34,7 +32,7 @@ object ResultAnnouncerBadScala {
   }
 
   def fetchResult(): Result = {
-    return new Result("Daniel", 3000)
+    return new Result("Daniel", 3000);
   }
 
   def announceWinner(): Unit =  {
@@ -42,10 +40,10 @@ object ResultAnnouncerBadScala {
     val winner: String = result.getWinner();
     val score: Int = result.getScore();
 
-    System.out.println("And the winner was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!")
+    System.out.println("And the winner was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!");
   }
 
   def main(args: Array[String]) {
-    announceWinner
+    announceWinner();
   }
 }
