@@ -1,7 +1,7 @@
 package intro
 
 
-object ResultAnnouncerSc extends App {
+object ResultAnnouncerBadScala {
 
    class Result(var winner: String, var score: Int) {
 
@@ -45,5 +45,7 @@ object ResultAnnouncerSc extends App {
     System.out.println("And the winner was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!")
   }
 
-  announceWinner
+  def main(args: Array[String]) {
+    announceWinner
+  }
 }
