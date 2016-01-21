@@ -1,18 +1,24 @@
 package intro;
 
+import com.google.common.base.Joiner;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ResultAnnouncerJav {
 
     private static class Result {
-        private final String winner;
+        private final String player;
         private final int score;
 
-        public Result(String winner, int score) {
-            this.winner = winner;
+        public Result(String player, int score) {
+            this.player = player;
             this.score = score;
         }
 
-        public String getWinner() {
-            return winner;
+        public String getPlayer() {
+            return player;
         }
 
         public int getScore() {
@@ -27,30 +33,52 @@ public class ResultAnnouncerJav {
             Result result = (Result) o;
 
             if (score != result.score) return false;
-            return winner.equals(result.winner);
+            return player.equals(result.player);
         }
 
         @Override
         public int hashCode() {
-            int result = winner.hashCode();
+            int result = player.hashCode();
             result = 31 * result + score;
             return result;
         }
     }
 
-    public Result fetchResult(){
+    private static Result fetchWinner() {
         return new Result("Daniel", 3000);
     }
 
-    public void announceWinner() {
-        Result result = fetchResult();
-        String winner = result.getWinner();
+    private static List<Result> fetchRunnersUp() {
+        List<Result> runnersUp = new LinkedList<Result>();
+        runnersUp.add(new Result("Alice", 2999));
+        runnersUp.add(new Result("Bob", 2998));
+        runnersUp.add(new Result("Frederica", 2000));
+        return runnersUp;
+    }
+
+    private static void announceWinner() {
+        Result result = fetchWinner();
+        String winner = result.getPlayer();
         int score = result.getScore();
-        System.out.println("And the winner was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!" );
+        System.out.println("And the player was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!");
+    }
+
+
+    private static void congratulateRunnnersUp() {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Result result : fetchRunnersUp()) {
+            if (!first)
+                sb.append(",");
+            first = false;
+            sb.append(result.getPlayer());
+        }
+        //  Joiner.on(",").join(fetchRunnersUp());
+        System.out.println("Commiserations to :" + sb.toString());
     }
 
     public static void main(String[] args) {
-        final ResultAnnouncerJav resultAnnouncer = new ResultAnnouncerJav();
-        resultAnnouncer.announceWinner();
+        announceWinner();
+        congratulateRunnnersUp();
     }
 }

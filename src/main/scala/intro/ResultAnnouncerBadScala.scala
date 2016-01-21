@@ -3,10 +3,12 @@ package intro
 
 object ResultAnnouncerBadScala {
 
-   class Result(private val winner: String, private val score: Int) {
+  class Result(_player: String, _score: Int) {
+    private val player = _player;
+    private val score = _score;
 
-    def getWinner(): String = {
-      return winner;
+    def getPlayer(): String = {
+      return player;
     }
 
     def getScore(): Int = {
@@ -15,29 +17,40 @@ object ResultAnnouncerBadScala {
 
     override def equals(o: Any): Boolean = {
       if (this == o) return true;
-      if ((o == null) || (this.getClass ne o.getClass)) return false;
+      if ((o == null) || (this.getClass != o.getClass)) return false;
 
       val result: Result = o.asInstanceOf[Result];
 
       if (score != result.score) return false;
-      return (winner == result.winner);
+      return (player == result.player);
 
     }
 
     override def hashCode(): Int = {
-      var result: Int = winner.hashCode();
+      var result: Int = player.hashCode();
       result = 31 * result + score;
       return result;
     }
   }
 
-  def fetchResult(): Result = {
+
+
+
+  private def fetchRunnersUp: java.util.List[Result] = {
+    val runnersUp: java.util.List[Result] = new java.util.LinkedList[Result]
+    runnersUp.add(new Result("Alice", 2999))
+    runnersUp.add(new Result("Bob", 2998))
+    runnersUp.add(new Result("Frederica", 2000))
+    return runnersUp;
+  }
+
+  private def fetchWinner(): Result = {
     return new Result("Daniel", 3000);
   }
 
-  def announceWinner(): Unit =  {
-    val result: Result = fetchResult();
-    val winner: String = result.getWinner();
+  private def announceWinner(): Unit = {
+    val result: Result = fetchWinner();
+    val winner: String = result.getPlayer();
     val score: Int = result.getScore();
 
     System.out.println("And the winner was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!");
