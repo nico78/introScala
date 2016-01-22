@@ -1,8 +1,5 @@
 package intro;
 
-import com.google.common.base.Joiner;
-
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,6 +39,14 @@ public class ResultAnnouncerJav {
             result = 31 * result + score;
             return result;
         }
+
+        @Override
+        public String toString() {
+            return "Result{" +
+                    "player='" + player + '\'' +
+                    ", score=" + score +
+                    '}';
+        }
     }
 
     private static Result fetchWinner() {
@@ -60,7 +65,10 @@ public class ResultAnnouncerJav {
         Result result = fetchWinner();
         String winner = result.getPlayer();
         int score = result.getScore();
-        System.out.println("And the player was " + winner + "\nwith a score of " + score + "\n Congratulations, " + winner + "!");
+        System.out.println(
+                "And the winner was " + winner + "\n" +
+                "with a score of " + score + "\n" +
+                        " Congratulations, " + winner + "!");
     }
 
 
@@ -74,7 +82,7 @@ public class ResultAnnouncerJav {
             sb.append(result.getPlayer());
         }
         //  Joiner.on(",").join(fetchRunnersUp());
-        System.out.println("Commiserations to :" + sb.toString());
+        System.out.println("Commiserations to : " + sb.toString());
     }
 
     public static void main(String[] args) {
@@ -82,3 +90,23 @@ public class ResultAnnouncerJav {
         congratulateRunnnersUp();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

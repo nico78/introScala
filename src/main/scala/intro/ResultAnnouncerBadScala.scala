@@ -1,6 +1,5 @@
 package intro
 
-
 object ResultAnnouncerBadScala {
 
   class Result(_player: String, _score: Int) {
@@ -44,6 +43,18 @@ object ResultAnnouncerBadScala {
     return runnersUp;
   }
 
+  private def congratulateRunnnersUp(): Unit = {
+    val sb: StringBuilder = new StringBuilder
+    var first: Boolean = true
+    import scala.collection.JavaConversions._
+    for (result <- fetchRunnersUp) {
+      if (!first) sb.append(",")
+      first = false
+      sb.append(result.getPlayer)
+    }
+    System.out.println("Commiserations to : " + sb.toString)
+  }
+
   private def fetchWinner(): Result = {
     return new Result("Daniel", 3000);
   }
@@ -58,5 +69,6 @@ object ResultAnnouncerBadScala {
 
   def main(args: Array[String]) {
     announceWinner();
+    congratulateRunnnersUp();
   }
 }
