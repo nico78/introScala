@@ -21,9 +21,9 @@ object ResultAnnouncer extends App {
       .stripMargin)
   }
 
-  def congratulateRunnersUp() = {
+  def congratulateRunnersUp() = 
     println(s"Commiserations to ${fetchRunnersUp.map(_.player).mkString(",")}")
-  }
+  
 
   announceWinner()
   congratulateRunnersUp()
