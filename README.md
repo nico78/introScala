@@ -1,4 +1,6 @@
 # Scala Intro
+
+[![Join the chat at https://gitter.im/nico78/introScala](https://badges.gitter.im/nico78/introScala.svg)](https://gitter.im/nico78/introScala?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Introducing scala features via conversion from java and some one-liners
 
 
